@@ -1,0 +1,28 @@
+services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    hostname: grafana
+    ports:
+      - 3000:3000
+    networks:
+      - monitorNetwork
+  
+  promethues:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    networks:
+      - monitorNetwork
+    ports:
+        - 9090:9090
+    volumes:
+      - prometheusData:/prometheus
+      - ./promethuesConfig.yaml:/etc/prometheus/prometheus.yml:ro
+networks:
+  monitorNetwork:
+    name: monitorNetwork
+    driver: bridge
+volumes:
+  prometheusData:
+    name: prometheusData

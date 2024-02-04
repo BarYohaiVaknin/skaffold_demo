@@ -1,0 +1,22 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: appname
+build:
+  local:
+    push: false
+  artifacts:
+  - image: appname
+    context: .
+    docker:
+      dockerfile: Dockerfile
+manifests:
+  rawYaml:
+  - deployment.yaml
+portForward:
+- resourceType: service
+  resourceName: app
+  port: 6000
+- resourceType: service
+  resourceName: app
+  port: 5000
