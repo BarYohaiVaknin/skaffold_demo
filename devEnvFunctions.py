@@ -202,6 +202,3 @@ def yamlHandler(folderPath, fileName, requiredData):
     yaml.safe_dump(valuesForDeployment,editedYaml,sort_keys=False,default_flow_style=False)
     editedYaml.close()
     return 0
-
-def messagePrinter():
-    return 0
